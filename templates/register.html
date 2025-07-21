@@ -12,37 +12,39 @@
     margin: auto; margin-top: 20px;
     border-radius: 10px; padding: 10px; text-align:end;" >
         <h2 style="text-align: center; color:dodgerblue;">User Signup</h2>
+        <form action="/register" method="post">
         <div class="row mb-3">
             <label for="email" class="col-sm-4 col-form-label">Email Id(Username) :</label>
             <div class="col-sm-6">
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" name="email">
             </div>
         </div>
         <div class="row mb-3">
             <label for="pass" class="col-sm-4 col-form-label">Password :</label>
             <div class="col-sm-6">
-            <input type="password" class="form-control" id="pass">
+            <input type="password" class="form-control" id="pass" name="pwd">
             </div>
         </div>
         <div class="row mb-3">
             <label for="name" class="col-sm-4 col-form-label" >Fullname :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" name="name">
             </div>
         </div>
         <div class="row mb-3">
             <label for="add" class="col-sm-4 col-form-label">Address :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="add">
+            <input type="text" class="form-control" id="add" name="add">
             </div>
         </div>
         <div class="row mb-3">
             <label for="pin" class="col-sm-4 col-form-label">Pincode :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="pin">
+            <input type="text" class="form-control" id="pin" name="pin">
             </div>
         </div>
-        <div style="text-align: center;"><button type="submit" class="btn btn-info";">Register </button><br><a href="login.html">Login here!</a></div>
+        <div style="text-align: center;"><input type="submit" value="Register" class="btn btn-info"><br><a href="/login">Login here!</a></div>
+        </form>
     </div>
 </body>
 </html>

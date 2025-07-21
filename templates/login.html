@@ -12,19 +12,21 @@
     margin: auto; margin-top: 150px;
     border-radius: 10px; padding: 10px; text-align: end;"  >
         <h2 style="text-align: center; color:#1e90ff;">User Login</h2>
+        <form action="/login" method="post">
         <div class="row mb-3">
             <label for="email" class="col-sm-4 col-form-label">Registered Email Id :</label>
             <div class="col-sm-6">
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" name="email">
             </div>
         </div>
         <div class="row mb-3">
             <label for="pass" class="col-sm-4 col-form-label" >Password :</label>
             <div class="col-sm-6">
-            <input type="password" class="form-control" id="pass">
+            <input type="password" class="form-control" id="pass" name="pass">
             </div>
         </div>
-        <div style="text-align: center;"><button type="submit" class="btn btn-info";">Login </button><br><a href="register.html">Create Account ?</a></div>
+        <div style="text-align: center;"><input type="submit" class="btn btn-info" value="Login"></a><br><a href="/register">Create Account ?</a></div>
+        </form>
     </div>
 </body>
 </html>
