@@ -13,15 +13,15 @@
 <body>
     <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; border-radius: 10px;padding: 10px;">
         <div class="d-flex justify-content-between" style="background-color:chartreuse;">
-            <div>  Welcome {{name}}</div>
+            <div>  Welcome {{this_user.name}}</div>
             <div >
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="admin_home.html">Home</a> | 
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="admin_users.html">users</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="admin_search.html">Search</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="admin_summary.html">Summary</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="">Logout</a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin">Home</a> | 
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin_user/{{this_user.id}}">users</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/search/{{this_user.id}}">Search</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/summary/{{this_user.id}}">Summary</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/login">Logout</a>
             </div>
-            <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="">Edit Profile  </a></div>
+            <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="/prof_edit/{{this_user.id}}">Edit Profile  </a></div>
         </div>
         <div class="card my-5">
             <div class="card-body" style="text-align: center; background-color: bisque;" >
@@ -29,40 +29,33 @@
             </div>
         </div>
         <div class="d-flex justify-content-evenly" >
+            {% for this_lot in lots %}
             <div class="card d-flex justify-content-between" id="prk">
-                <h2>Parking#1</h2>
+                <h2>Parking No {{this_lot.id}}</h2>
                 <div>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="edit_prk.html">Edit</a> |
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="">Delete</a>
+                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="/edit_lot/{{this_lot.id}}">Edit</a> |
+                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="/delete_lot/{{this_lot.id}}">Delete</a>
                 </div>
-                <div>( Occupied : 3/15 )</div>
+                
+                <div>( Occupied : {{this_lot.occupied_lot}}/{{this_lot.maximum_number_of_spots}} )</div>
                 <ul class="nav nav-pills d-flex justify-content-evenly">
+                    
+                    {% for spot in spots %}
+                        {% if spot.lot_id == this_lot.id %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">1</a>
+                        {% if spot.status == "available" %}
+                        <a class="nav-link active" aria-current="page" href="/view_spot/{{this_lot.id}}/{{spot.id}}">A</a>
+                        {% else %}
+                        <a class="btn btn-info" aria-current="page" href="/view_spot/{{this_lot.id}}/{{spot.id}}">O</a>
+                        {% endif %}
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">4</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">5</a>
-                    </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="card" id="prk">
-                <h2>Parking#2</h2>
-                <div>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="edit_prk.html">Edit</a> |
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="">Delete</a>
-                </div>
-                <div>( Occupied : 4/10 )</div>
-            </div>
+            {% endfor %}
         </div>
-        <div style="text-align: center;padding-top: 40px;" ><a class="btn btn-info" href="new_prk.html" role="button">+ Add Lot</a></div>
+        <div style="text-align: center;padding-top: 40px;" ><a class="btn btn-info" href="/add_lot/{{this_user.id}}" role="button">+ Add Lot</a></div>
     </div>
 </body>
 </html>

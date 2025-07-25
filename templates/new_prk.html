@@ -7,45 +7,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
-    <div style="border: 2px solid black; width: 60%;height: 450px; margin: auto; margin-top: 20px;text-align: end;">
+    <div style="border: 2px solid black; width: 60%;height: 500px; margin: auto; margin-top: 20px;text-align: end;">
         <div style="text-align: center; padding: 10px; background-color: darksalmon;" ><b>New Parking Lot</b></div>
         <div class="my-5">
-           <div class="row mb-3">
+        <div class="my-5">
+        <form action="/add_lot/{{this_user.id}}" method="post">
+        <div class="row mb-3">
+            <label for="email" class="col-sm-4 col-form-label">ID :</label>
+            <div class="col-sm-6">
+            <input type="number" class="form-control" id="email" name="id">
+            </div>
+        </div>
+            <div class="row mb-3">
             <label for="email" class="col-sm-4 col-form-label">Prime Location Name :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="email">
+            <input type="text" class="form-control" id="email" name="loc">
             </div>
         </div>
         <div class="row mb-3">
             <label for="add" class="col-sm-4 col-form-label">Address :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="add">
+            <input type="text" class="form-control" id="add" name="add">
             </div>
         </div>
         <div class="row mb-3">
             <label for="pin" class="col-sm-4 col-form-label">Pincode :</label>
             <div class="col-sm-6">
-            <input type="number" class="form-control" id="pin">
+            <input type="number" class="form-control" id="pin" name="pin">
             </div> 
         </div>
         <div class="row mb-3">
             <label for="name" class="col-sm-4 col-form-label" >Price(par hour) :</label>
             <div class="col-sm-6">
-            <input type="number" class="form-control" id="name">
+            <input type="number" class="form-control" id="name" name="price">
             </div>
         </div>
         <div class="row mb-3">
             <label for="name" class="col-sm-4 col-form-label" >Maximum spots :</label>
             <div class="col-sm-6">
-            <input type="number" class="form-control" id="name">
+            <input type="number" class="form-control" id="name" name="maxs">
             </div>
         </div>
         <div class="d-flex justify-content-evenly">
             <div class="d-grid gap-4 d-md-block">
-                <button class="btn btn-primary" type="button">Add</button>
-                <a class="btn btn-primary" href="admin_home.html" role="button">Cancle</a>
+                <input type="submit" class="btn btn-info" value="Add">
+                <a class="btn btn-primary" href="/admin" role="button">Cancle</a>
             </div>
         </div>
+        </form>
     </div>
 </body>
 </html>

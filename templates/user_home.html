@@ -13,13 +13,13 @@
 <body>
     <div style="border: 2px solid black; width: 80%; height: 700px; margin: auto; margin-top: 15px; border-radius: 10px;">
         <div class="d-flex justify-content-between" style="background-color:chartreuse;padding: 10px;">
-            <div>  Welcome {{name}}</div>
+            <div>  Welcome {{this_user.name}}</div>
             <div >
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="user_home.html">Home</a> | 
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="user_summary.html">Summary</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="">Logout</a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/Home_user/{{this_user.id}}">Home</a> | 
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/U_summary/{{this_user.id}}">Summary</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/login">Logout</a>
             </div>
-            <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="">Edit Profile  </a></div>
+            <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="/us_prof_edit/{{this_user.id}}">Edit Profile  </a></div>
         </div>
         <div class="card my-3">
             <div class="card-body" style="text-align: center; background-color: bisque;" >
@@ -39,7 +39,7 @@
                 <td>Hudas</td>
                 <td>RJ37GB1577</td>
                 <td>22-05-2002</td>
-                <td><a class="btn btn-success" href="" role="button">Release</a></td>
+                <td><a class="btn btn-success" href="/release/{{this_user.id}}" role="button">Release</a></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -72,13 +72,13 @@
                 <td>1</td>
                 <td>Hudas</td>
                 <td>6</td>
-                <td><a class="btn btn-info" href="" role="button">book</a></td>
+                <td><a class="btn btn-info" href="/book" role="button">book</a></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Rajasthan</td>
                 <td>10</td>
-                <td><a class="btn btn-info" href="" role="button">Book</a></td>
+                <td><a class="btn btn-info" href="/book" role="button">Book</a></td>
             </tr>
         </table>
     </div>
