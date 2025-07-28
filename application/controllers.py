@@ -84,20 +84,23 @@ def add_lot(id):
 @app.route("/edit_lot/<int:id>", methods = ["GET" , "POST"])
 def edit_lot(id):
     this_lot = Parking_lot.query.filter_by(id = id).first()
+    spot = Parking_spot.query.filter_by(lot_id = id , status = "available").all()
+    lnt = len(Parking_spot.query.filter_by(lot_id = id , status = "occupied").all())
     if request.method == "POST":
-        db.session.delete(this_lot)
+
+        for i in spot:
+            db.session.delete(i)
         db.session.commit()
-        id = request.form.get("id")
-        loc = request.form.get("loc")
-        add = request.form.get("add")
-        pin = request.form.get("pin")
-        price = request.form.get("price")
-        maxs = request.form.get("maxs")
-        lot = Parking_lot(prime_location_name = loc , Price = price , Address = add , Pin_code = pin , maximum_number_of_spots = maxs)
-        db.session.add(lot)
+
+        this_lot.id = request.form.get("id")
+        this_lot.prime_location_name = request.form.get("loc")
+        this_lot.Address = request.form.get("add")
+        this_lot.Pin_code = request.form.get("pin")
+        this_lot.Price = request.form.get("price")
+        this_lot.maximum_number_of_spots = request.form.get("maxs")
         db.session.commit()
         
-        for i in range(int(maxs)):
+        for i in range(int(this_lot.maximum_number_of_spots) - lnt):
             spot = Parking_spot(lot_id = id)
             db.session.add(spot)
         db.session.commit()
