@@ -117,7 +117,7 @@ def Ushome(id):
 @app.route("/U_summary/<int:id>")
 def Us_summary(id):
     this_user = Users.query.filter_by(id = id).first()
-    spot = len(Parking_spot.query.filter_by(occupied_user = id).all())
+    spot = len(Reserve_parking_spot.query.filter_by(user_id = id).all())
     if (spot >= 1) :
         a_s = len(Reserve_parking_spot.query.filter_by(status = "released" , user_id = id).all())
         o_s = len(Reserve_parking_spot.query.filter_by(status = "occupied" , user_id = id).all())
