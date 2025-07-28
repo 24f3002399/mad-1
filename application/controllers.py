@@ -117,27 +117,31 @@ def Ushome(id):
 @app.route("/U_summary/<int:id>")
 def Us_summary(id):
     this_user = Users.query.filter_by(id = id).first()
-    a_s = len(Reserve_parking_spot.query.filter_by(status = "released" , user_id = id).all())
-    o_s = len(Reserve_parking_spot.query.filter_by(status = "occupied" , user_id = id).all())
+    spot = len(Parking_spot.query.filter_by(occupied_user = id).all())
+    if (spot >= 1) :
+        a_s = len(Reserve_parking_spot.query.filter_by(status = "released" , user_id = id).all())
+        o_s = len(Reserve_parking_spot.query.filter_by(status = "occupied" , user_id = id).all())
 
-    labels = ["Parked Out" , "Occupied"]
-    sizes = [a_s , o_s]
-    colors = ["yellow" , "green"]
-    plt.pie(sizes , labels = labels , colors = colors ,autopct = "%1.1f%%")
-    plt.title("Parking Details")
-    plt.savefig(f"static/{id}_us_pie.png")
-    plt.clf()
+        labels = ["Parked Out" , "Occupied"]
+        sizes = [a_s , o_s]
+        colors = ["yellow" , "green"]
+        plt.pie(sizes , labels = labels , colors = colors ,autopct = "%1.1f%%")
+        plt.title("Parking Details")
+        plt.savefig(f"static/{id}_us_pie.png")
+        plt.clf()
 
-    labels = ["Parked Out" , "Occupied"]
-    sizes = [a_s , o_s]
-    plt.bar(labels , sizes)
-    plt.xlabel("Parking Details")
-    plt.ylabel("No of Spot")
-    plt.title("Parking Details")
-    plt.savefig(f"static/{id}_us_bar.png")
-    plt.clf()
+        labels = ["Parked Out" , "Occupied"]
+        sizes = [a_s , o_s]
+        plt.bar(labels , sizes)
+        plt.xlabel("Parking Details")
+        plt.ylabel("No of Spot")
+        plt.title("Parking Details")
+        plt.savefig(f"static/{id}_us_bar.png")
+        plt.clf()
 
-    return render_template("user_summary.html" , this_user = this_user , a_s = a_s , o_s = o_s)
+        return render_template("user_summary.html" , this_user = this_user , a_s = a_s , o_s = o_s)
+    else:
+        return redirect(f"/Home_user/{id}")
 
 @app.route("/us_prof_edit/<int:id>" , methods = ["GET", "POST"])
 def us_prof_edit(id):
@@ -211,7 +215,7 @@ def delete_lot(id):
             db.session.commit()
             return redirect("/admin")
         else:
-            return "Not able to Delete"
+            return render_template("not_delete.html")
     return render_template("delete_prk.html" , this_lot = this_lot)
 
 @app.route("/occupied/<int:lot_id>/<int:spot_id>")
