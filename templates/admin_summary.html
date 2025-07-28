@@ -11,17 +11,27 @@
 </head>
 
 <body>
-    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; padding: 10px; border-radius: 10px; overflow: auto;" >
         <div class="d-flex justify-content-between" style="background-color:chartreuse;">
             <div>  Welcome {{this_user.name}}</div>
             <div >
                 <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin">Home</a> | 
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin_user/{{this_user.id}}">users</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/search/{{this_user.id}}">Search</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/summary/{{this_user.id}}">Summary</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/users">users</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin_search">Search</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/ad_summary">Summary</a> |
                 <a class="link-offset-2 link-underline link-underline-opacity-0" href="/login">Logout</a>
             </div>
             <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="/prof_edit/{{this_user.id}}">Edit Profile  </a></div>
+        </div>
+        <div>
+            <div class="my-2">
+                <h3 class="mx-2"> Status of Parking Spot</h3>
+                <img src="/static/ad_pie.png" alt="Pie chart">
+                </div>  
+            <div class="my-2">
+                <h3 class="mx-2"> Status of Parking Spot</h3>
+                <img src="/static/ad_bar.png" alt="Bar Graph">
+            </div>  
         </div>
 
     </div>

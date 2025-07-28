@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        #prk{width: 300px; text-align: center; }
+    </style>
+</head>
+
+<body>
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; border-radius: 10px; overflow: auto;">
+        <div class="card my-3">
+            <div class="card-body" style="text-align: center; background-color:cadetblue" >
+                <b>Parking Lots at {{search_word}}</b>
+            </div>
+        </div>
+        {% if result %}
+        <table class="table table-bordered" style="text-align: center; border: 2px solid green; width: 90%; margin: auto;">
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+            {% for lot in result %}
+            <tr>
+                <td>{{lot.id}}</td>
+                <td>{{lot.Address}}</td>
+                {% if lot.occupied_spot == None %}
+                    <td>{{lot.maximum_number_of_spots}}</td>
+                {% else %}
+                    <td>{{lot.maximum_number_of_spots - lot.occupied_spot}}</td>
+                {% endif %}
+                {% if lot.occupied_spot == None %}
+                <td><a class="btn btn-info" href="/book/{{this_user.id}}/{{lot.id}}" role="button">book</a></td>
+                {% else %}
+                {% if lot.maximum_number_of_spots - lot.occupied_spot == 0 %}
+                <td><button type="button" class="btn btn-danger" disabled>Book</button></td>
+                {% else %}
+                <td><a class="btn btn-info" href="/book/{{this_user.id}}/{{lot.id}}" role="button">book</a></td>
+                {% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div style="text-align: center;"><h4 class="mx-2" >No Results Found !</h4></div>
+        {% endif %}
+        <div class="my-5" style="text-align: center;"><a class="btn btn-info mx-3" href="/Home_user/{{this_user.id}}" role="button">Cancle</a></div>
+    </div>
+</body>
+</html>

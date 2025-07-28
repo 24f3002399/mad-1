@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div style="border: 2px solid black; width: 80%; height: 700px; margin: auto; margin-top: 15px; border-radius: 10px;">
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; border-radius: 10px; overflow: auto;">
         <div class="d-flex justify-content-between" style="background-color:chartreuse;padding: 10px;">
             <div>  Welcome {{this_user.name}}</div>
             <div >
@@ -21,6 +21,19 @@
             </div>
             <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="/us_prof_edit/{{this_user.id}}">Edit Profile  </a></div>
         </div>
+
+        <div>
+            <div class="my-2">
+                <h3 class="mx-2"> Status of Parking Spot</h3>
+                <img src="/static/{{this_user.id}}_us_pie.png" alt="Pie chart">
+                </div>  
+            <div class="my-2">
+                <h3 class="mx-2"> Status of Parking Spot</h3>
+                <img src="/static/{{this_user.id}}_us_bar.png" alt="Bar Graph">
+            </div>  
+        </div>
+
     </div>
 </body>
 </html>
+

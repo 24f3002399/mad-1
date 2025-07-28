@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; padding: 10px; border-radius: 10px; overflow: auto;">
         <div class="d-flex justify-content-between" style="background-color:chartreuse;">
             <div>  Welcome {{this_user.name}}</div>
             <div >
                 <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin">Home</a> | 
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin_user/{{this_user.id}}">users</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/search/{{this_user.id}}">Search</a> |
-                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/summary/{{this_user.id}}">Summary</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/users">users</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/admin_search">Search</a> |
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="/ad_summary">Summary</a> |
                 <a class="link-offset-2 link-underline link-underline-opacity-0" href="/login">Logout</a>
             </div>
             <div><a class="link-offset-2 link-underline link-underline-opacity-0" href="/prof_edit/{{this_user.id}}">Edit Profile  </a></div>
@@ -36,20 +36,16 @@
                 <th>Address</th>
                 <th>Pin code</th>
             </tr>
+            {% for user in users %}
             <tr>
-                <td>1</td>
-                <td>mukesh123@gmail.com</td>
-                <td>Mukesh Chauhan</td>
-                <td>Hudas</td>
-                <td>341316</td>
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.pincode}}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>mukesh123@gmail.com</td>
-                <td>Mukesh Ram</td>
-                <td>Rajasthan</td>
-                <td>787707</td>
-            </tr>
+            {% endfor %}
+            
         </table>
     </div>
 </body>

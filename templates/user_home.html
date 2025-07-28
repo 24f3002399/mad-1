@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div style="border: 2px solid black; width: 80%; height: 700px; margin: auto; margin-top: 15px; border-radius: 10px;">
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; border-radius: 10px;">
         <div class="d-flex justify-content-between" style="background-color:chartreuse;padding: 10px;">
             <div>  Welcome {{this_user.name}}</div>
             <div >
@@ -26,6 +26,7 @@
                 <b>Recent Parking History</b>
             </div>
         </div>
+        <div style="max-height: 150px; overflow-y: scroll;">
         <table class="table table-bordered" style="text-align: center; border: 2px solid green; width: 90%; margin: auto;">
             <tr>
                 <th>Id</th>
@@ -34,53 +35,35 @@
                 <th>Timestamp</th>
                 <th>Action</th>
             </tr>
+            {% for spot in reserve %}
             <tr>
-                <td>1</td>
-                <td>Hudas</td>
-                <td>RJ37GB1577</td>
-                <td>22-05-2002</td>
-                <td><a class="btn btn-success" href="/release/{{this_user.id}}" role="button">Release</a></td>
+                <td>{{spot.spot_id}}</td>
+                <td>{{spot.location}}</td>
+                <td>{{spot.vehicle_no}}</td>
+                <td>{{spot.parking_time}}</td>
+                {% if spot.status == "occupied" %}
+                <td><a class="btn btn-success" href="/release/{{this_user.id}}/{{spot.spot_id}}/{{spot.lot_id}}" role="button">Release</a></td>
+                {% else %}
+                <td><button type="button" class="btn btn-warning" disabled>Parked Out</button></td>
+                {% endif %}
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Rajasthan</td>
-                <td>RJ37GB0007</td>
-                <td>02-02-2002</td>
-                <td><a class="btn btn-warning" href="" role="button">Parking Out</a></td>
-            </tr>
+            {% endfor %}
         </table>
-        <div class="my-5" style="text-align: end;margin: auto;">
-            <div class="row mb-3">
-                <label for="email" class="col-sm-4 col-form-label">Search Parking at Location/Pin code :</label>
-                <div class="col-sm-7">
-                <input type="text" class="form-control" id="email" ></div>
-            </div>
         </div>
-        <div class="card my-3">
-            <div class="card-body" style="text-align: center; background-color:cadetblue" >
-                <b>Parking Lots at Dadar Road</b>
+        <div class="my-5" style="text-align:center;margin: auto;"><h4>Search Parking Lot</h4>
+            <div class="row mb-3 mx-2">                
+                <form class="d-flex my-3" action="/us_search/{{this_user.id}}">
+                    <select class="form-select w-25 p-2 " aria-label="Default select example" name="key">
+                        <option selected value="location">Location</option>
+                        <option value="pincode">Pin code</option>
+                    </select>
+                    <input class="form-control" type="search" aria-label="search" name="search">
+                    <input class="btn btn-success mx-2" type="submit" value="search">
+                </form>
+
+
             </div>
-        </div>
-        <table class="table table-bordered" style="text-align: center; border: 2px solid green; width: 90%; margin: auto;">
-            <tr>
-                <th>Id</th>
-                <th>Address</th>
-                <th>Availability</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Hudas</td>
-                <td>6</td>
-                <td><a class="btn btn-info" href="/book" role="button">book</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Rajasthan</td>
-                <td>10</td>
-                <td><a class="btn btn-info" href="/book" role="button">Book</a></td>
-            </tr>
-        </table>
+        </div>          
     </div>
 </body>
 </html>

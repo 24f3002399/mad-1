@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        #prk{width: 300px; text-align: center; }
+    </style>
+</head>
+
+<body>
+    <div style="border: 2px solid black; width: 80%; height: 500px; margin: auto; margin-top: 15px; padding: 10px; border-radius: 10px;">
+        
+        <div class="card my-5">
+            <div class="card-body" style="text-align: center; background-color: bisque;" >
+                <b>{{key.upper()}}</b>
+            </div>
+        </div>
+        {% if result %}
+            {% if key == "user"%}
+            <table class="table table-bordered" style="text-align: center; border: 2px solid green; width: 90%; margin: auto;">
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Full name</th>
+                    <th>Address</th>
+                    <th>Pin code</th>
+                    <th>Spot</th>
+                </tr>
+                <tr>
+                    <td>{{result.id}}</td>
+                    <td>{{result.email}}</td>
+                    <td>{{result.name}}</td>
+                    <td>{{result.address}}</td>
+                    <td>{{result.pincode}}</td>
+                    <td>{{tot_spot}}</td>
+                </tr>  
+            </table>
+            
+            {% else %}
+
+            <div class="d-flex justify-content-evenly" >
+                {% for this_lot in result %}
+                <div class="card d-flex justify-content-between" id="prk">
+                    <h2>Parking No {{this_lot.id}}</h2>
+                    <div>
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="/edit_lot/{{this_lot.id}}">Edit</a> |
+                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="/delete_lot/{{this_lot.id}}">Delete</a>
+                    </div>
+                    
+                    <div>( Occupied : {{this_lot.occupied_lot}}/{{this_lot.maximum_number_of_spots}} )</div>
+                    <ul class="nav nav-pills d-flex justify-content-evenly">
+                        
+                        {% for spot in spots %}
+                            {% if spot.lot_id == this_lot.id %}
+                        <li class="nav-item">
+                            {% if spot.status == "available" %}
+                            <a class="nav-link active" aria-current="page" href="/view_spot/{{this_lot.id}}/{{spot.id}}">A</a>
+                            {% else %}
+                            <a class="btn btn-info" aria-current="page" href="/view_spot/{{this_lot.id}}/{{spot.id}}">O</a>
+                            {% endif %}
+                        </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% endif %}
+
+        {% else %}
+        <div style="text-align: center;"><h4 class="mx-2" >No Results Found !</h4></div>
+        {% endif %}
+        <div class="my-5" style="text-align: center;"><a class="btn btn-info mx-3" href="/admin_search" role="button">Cancle</a></div>
+    </div>
+</body>
+</html>

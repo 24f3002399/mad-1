@@ -12,36 +12,37 @@
         <div class="my-5">
            <div class="row mb-3">
             <label for="email" class="col-sm-4 col-form-label">Spot Id :</label>
-            <div class="col-sm-6">
-            <input type="text" class="form-control" id="email">
+            <div class="col-sm-3">
+            <button type="button" class="btn btn-primary" disabled>{{spot.id}}</button>
             </div>
         </div>
         <div class="row mb-3">
             <label for="add" class="col-sm-4 col-form-label">Lot Id :</label>
-            <div class="col-sm-6">
-            <input type="text" class="form-control" id="add">
+            <div class="col-sm-3">
+            <button type="button" class="btn btn-primary" disabled>{{lot.id}}</button>
             </div>
         </div>
         <div class="row mb-3">
             <label for="pin" class="col-sm-4 col-form-label">User Id :</label>
-            <div class="col-sm-6">
-            <input type="text" class="form-control" id="pin">
+            <div class="col-sm-3">
+            <button type="button" class="btn btn-primary" disabled>{{user.id}}</button>
             </div> 
         </div>
+        <form action="/book/{{user.id}}/{{lot.id}}" method="post">
         <div class="row mb-3">
             <label for="name" class="col-sm-4 col-form-label" >Vehicle No :</label>
             <div class="col-sm-6">
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" , name="v_no">
             </div>
         </div>
         
         <div class="d-flex justify-content-evenly">
             <div class="d-grid gap-4 d-md-block">
-                <button class="btn btn-primary" type="button">Reserve</button>
-                <a class="btn btn-primary" href="user_home.html" role="button">Cancle</a>
+                <input type="submit" class="btn btn-info" value="Reserve">
+                <a class="btn btn-primary" href="/Home_user/{{user.id}}" role="button">Cancle</a>
             </div>
         </div>
-        
+        </form>
     </div>
 </body>
 </html>
