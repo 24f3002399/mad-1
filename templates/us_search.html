@@ -23,6 +23,7 @@
                 <th>Id</th>
                 <th>Address</th>
                 <th>Availability</th>
+                <th>Price(per hour)</th>
                 <th>Action</th>
             </tr>
             {% for lot in result %}
@@ -34,6 +35,7 @@
                 {% else %}
                     <td>{{lot.maximum_number_of_spots - lot.occupied_spot}}</td>
                 {% endif %}
+                <td>{{lot.Price}}</td>
                 {% if lot.occupied_spot == None %}
                 <td><a class="btn btn-info" href="/book/{{this_user.id}}/{{lot.id}}" role="button">book</a></td>
                 {% else %}
