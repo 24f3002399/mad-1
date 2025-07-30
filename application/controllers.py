@@ -283,6 +283,10 @@ def s_book(user_id , lot_id):
         return redirect(f"/Home_user/{user.id}")
     return render_template("book_prk.html" , user = user , lot = lot , spot = spot)
 
+@app.route("/")
+def home():
+    return render_template("home.html")
+
 @app.route("/ad_summary")
 def ad_summary():
     this_user = Users.query.filter_by(type = "admin").first()
