@@ -167,7 +167,7 @@ def release(user_id , spot_id , lot_id):
     price = (hour*lot.Price)
     if request.method == "POST":
         
-        res = Reserve_parking_spot.query.filter_by(spot_id = spot.id , status = "occupied").first()
+        res = Reserve_parking_spot.query.filter_by(spot_id = spot.id ).first()
         res.status = "released"
         res.leaving_time = l_time
         res.parking_cost = price
